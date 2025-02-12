@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_product');
             $table->string('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->enum('status', [Product::active, Product::inactive])->default(Product::active);
             $table->timestamps();

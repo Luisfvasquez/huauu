@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all()->where('role_id', 1);
-        return view('admin.users.GestionUser',compact('users'));
+        return view('admin.users.index',compact('users'));
     }
 
     /**

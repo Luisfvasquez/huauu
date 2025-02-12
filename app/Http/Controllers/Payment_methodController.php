@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Payment_method;
 
 class Payment_methodController extends Controller
 {
@@ -11,7 +12,8 @@ class Payment_methodController extends Controller
      */
     public function index()
     {
-        return view('category.index');
+        $methods = Payment_method::all();
+        return view('admin.method_pay.index',compact('methods'));
     }
 
     /**
@@ -19,7 +21,7 @@ class Payment_methodController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.method_pay.create');
     }
 
     /**
@@ -27,7 +29,12 @@ class Payment_methodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name_method' => 'required',
+        ]);
+
+        Payment_method::create($request->all());
+        return redirect()->route('payment_method.index');
     }
 
     /**
@@ -35,7 +42,8 @@ class Payment_methodController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $method = Payment_method::find($id);
+        return view('admin.method_pay.edit',compact('method'));
     }
 
     /**
@@ -51,7 +59,8 @@ class Payment_methodController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Payment_method::find($id)->update($request->all());
+        return redirect()->route('payment_method.index');
     }
 
     /**
@@ -59,6 +68,7 @@ class Payment_methodController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Payment_method::destroy($id);
+        return redirect()->route('payment_method.index');
     }
 }

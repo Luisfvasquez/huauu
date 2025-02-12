@@ -13,7 +13,7 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::all()->where('role_id', 2);
-        return view('admin.admins.GestionAdmin',compact('users'));
+        return view('admin.admins.index',compact('users'));
     }
 
     /**
@@ -21,7 +21,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.admins.CrearAdmin');
+        return view('admin.admins.create');
         
     }
 
@@ -48,7 +48,7 @@ class AdminController extends Controller
     public function show(string $id)
     {
         $user=User::where('cedula',$id)->first();     
-        return view('admin.admins.EditAdmin',compact('user'));
+        return view('admin.admins.edit',compact('user'));
     }
 
     /**

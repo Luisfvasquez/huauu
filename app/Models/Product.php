@@ -11,4 +11,17 @@ class Product extends Model
 
     const active = 1;
     const inactive = 0;
+
+    protected $fillable = [
+        'name_product',
+        'description',
+        'image',
+        'category_id',
+        'status',
+    ];
+
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
 }
