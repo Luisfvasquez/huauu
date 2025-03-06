@@ -10,6 +10,8 @@ use App\Http\Controllers\Payment_methodController;
 use App\Http\Controllers\InventoryController;
 
 use App\Http\Controllers\BuyProductController;
+use App\Http\Controllers\InvoiceController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () {    
+    $products  = Product::with('category')->get();   
+    return view('welcome', compact('products'));
 });
 
 Route::resource('users', UserController::class);
@@ -33,6 +36,7 @@ Route::resource('category', CategoryController::class);
 Route::resource('suplier', SuplierController::class);
 Route::resource('payment_method', Payment_methodController::class);
 Route::resource('buy', BuyProductController::class);
+Route::resource('invoice', InvoiceController::class);
 Route::get('/showbuy', [BuyProductController::class, 'showAll']);
 Route::resource('inventory', InventoryController::class);
 

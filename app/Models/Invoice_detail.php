@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice_detail extends Model
 {
     use HasFactory;
+
+    public function product(){
+            return $this->belongsTo(Product::class);
+    }
+
+    public function invoice(){
+        return $this->belongsTo(Invoice::class);
+    }
 }
