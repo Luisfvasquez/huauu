@@ -40,6 +40,8 @@ Route::resource('invoice', InvoiceController::class);
 Route::get('/showbuy', [BuyProductController::class, 'showAll']);
 Route::resource('inventory', InventoryController::class);
 
+
+
 Route::post('/login', [SesionController::class, 'login'])->name('login');
 
 

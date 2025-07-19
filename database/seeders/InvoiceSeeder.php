@@ -17,7 +17,7 @@ class InvoiceSeeder extends Seeder
      */
     public function run(): void
     {
-        Invoice::factory(2)->create([])->each(function ($invoice) {
+        Invoice::factory(2)->create()->each(function ($invoice) {
             Invoice_detail::create([
                 'invoice_id' => $invoice->id,
                 'product_id' => Product::all()->random()->id,

@@ -22,7 +22,7 @@
                         <ul
                             class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                             <li>
-                                <a href="{{ url('login') }}"
+                                <a href="{{ route('login') }}"
                                     class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                                     aria-current="page">Iniciar Sesion</a>
                             </li>
@@ -62,11 +62,11 @@
                             </h2>
                             <ul class="text-gray-500 dark:text-gray-400 font-medium">
                                 <li class="mb-4">
-                                    <a href="https://flowbite.com/" class="hover:underline">Carrera 21 entre calles 29 y
+                                    <a href="#" class="hover:underline">Carrera 21 entre calles 29 y
                                         30</a>
                                 </li>
                                 <li>
-                                    <a href="https://tailwindcss.com/" class="hover:underline">Barquisimeto, Lara.
+                                    <a href="" class="hover:underline">Barquisimeto, Lara.
                                         Venezuela</a>
                                 </li>
                             </ul>
@@ -76,11 +76,11 @@
                             </h2>
                             <ul class="text-gray-500 dark:text-gray-400 font-medium">
                                 <li class="mb-4">
-                                    <a href="https://github.com/themesberg/flowbite" class="hover:underline ">+58
+                                    <a href="#" class="hover:underline ">+58
                                         414-5018145</a>
                                 </li>
                                 <li>
-                                    <a href="https://discord.gg/4eeurUVvTy"
+                                    <a href="#"
                                         class="hover:underline">wueyluis@gmail.com</a>
                                 </li>
                             </ul>
