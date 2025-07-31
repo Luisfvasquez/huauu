@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $primaryKey = 'cedula';
+
     const user = 1 ;
     const admin = 2 ;
 
@@ -21,6 +23,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'cedula',
         'name',
         'phone_number',
         'email',

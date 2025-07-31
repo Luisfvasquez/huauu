@@ -11,6 +11,7 @@ use App\Http\Controllers\InventoryController;
 
 use App\Http\Controllers\BuyProductController;
 use App\Http\Controllers\InvoiceController;
+use App\Livewire\TableOne;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -25,22 +26,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {    
-    $products  = Product::with('category')->get();   
+Route::get('/', function () {
+    $products  = Product::with('category')->get();
     return view('welcome', compact('products'));
 });
 
-Route::resource('users', UserController::class);
-Route::resource('admin', AdminController::class);
-Route::resource('category', CategoryController::class);
-Route::resource('suplier', SuplierController::class);
-Route::resource('payment_method', Payment_methodController::class);
-Route::resource('buy', BuyProductController::class);
-Route::resource('invoice', InvoiceController::class);
-Route::get('/showbuy', [BuyProductController::class, 'showAll']);
-Route::resource('inventory', InventoryController::class);
+Route::middleware(['auth'])->group(function () {
 
+    Route::resource('users', UserController::class);
+    Route::resource('admin', AdminController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('suplier', SuplierController::class);
+    Route::resource('payment_method', Payment_methodController::class);
+    Route::resource('buy', BuyProductController::class);
+    Route::resource('invoice', InvoiceController::class);
+    Route::get('/showbuy', [BuyProductController::class, 'showAll'])->name('showbuy');
+    Route::resource('inventory', InventoryController::class);
+    Route::view('/principal', 'admin.principal')->name('principal');
 
+    Route::view('/compra', 'admin.compra');
+});
 
 Route::post('/login', [SesionController::class, 'login'])->name('login');
 
@@ -48,6 +53,3 @@ Route::post('/login', [SesionController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
 Route::get('/login', [SesionController::class, 'showLogin']);
 Route::get('/logout', [SesionController::class, 'logout'])->name('logout');
-
-Route::view('/principal','admin.principal')->name('pricipal');
-Route::view('/compra', 'admin.compra');

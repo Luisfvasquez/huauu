@@ -1,6 +1,5 @@
 <x-admin>
 
-
   <form class="max-w-sm mx-auto" method="POST" action="{{ route('admin.store') }}">
     
     <h1 class="text-5xl font-extrabold dark:text-white">Registro Admin</h1>
