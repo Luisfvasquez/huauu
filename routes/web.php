@@ -8,11 +8,14 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SuplierController;
 use App\Http\Controllers\Payment_methodController;
 use App\Http\Controllers\InventoryController;
-
 use App\Http\Controllers\BuyProductController;
 use App\Http\Controllers\InvoiceController;
-use App\Livewire\TableOne;
+use App\Http\Controllers\Prueba;
+use App\Jobs\EnviarMail;
+use App\Jobs\Logger;
+use Illuminate\Support\Facades\Session;
 use App\Models\Product;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,3 +56,43 @@ Route::post('/login', [SesionController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
 Route::get('/login', [SesionController::class, 'showLogin']);
 Route::get('/logout', [SesionController::class, 'logout'])->name('logout');
+
+
+// --------------------- test -----------------------
+
+
+Broadcast::channel('public-message-channel',function($user, $id){
+    return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('private-message-channel.{id}',function($user, $id){
+    return (int) $user->id === (int) $id;
+});
+
+Route::get('/prueba', [Prueba::class, 'test']);
+
+Route::get('/websocket', [Prueba::class, 'WebSocket']);
+
+//redis
+Route::get('/redis-check', function () {
+    Session::put('usuario', 'rodrigo');
+    return Session::get('usuario');  // Debería devolver "rodrigo"
+});
+
+
+//jobs
+
+Route::get('/test-job', function () {
+    Logger::dispatch();
+    return response('Job despachado para logging');
+});
+
+// mail con job
+Route::get('/test-mail', function () {
+  /*   $compra = User::get()->first();
+    $link = 'https://www.mercadopago.com/link-de-prueba';
+ */
+    EnviarMail::dispatch();
+
+    return 'Job despachado para enviar correo';
+});

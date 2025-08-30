@@ -22,13 +22,11 @@ class SesionController extends Controller
 
         $user = User::where('cedula', $request->cedula)->first();       
         if($user){
-            if(Auth::attempt(['cedula' => $request->cedula, 'password' => $request->password])){
-                session(['user' => $user]);
-                return view('admin.principal');
+            if(Auth::attempt(['cedula' => $request->cedula, 'password' => $request->password])){                
+                return redirect()->route('principal');
             }
         }else{
-            $message = 'Usuario no encontrado';
-            return view('login',compact('message'));
+            return redirect()->action([SesionController::class, 'showLogin'])->withErrors(['message' => 'Usuario no encontrado']);
         }
     }
     
